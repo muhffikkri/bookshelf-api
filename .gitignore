@@ -1,0 +1,36 @@
+# Dependencies
+/node_modules
+
+# Build output
+/dist
+/build
+
+# Environment variables
+.env
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Logs
+/logs
+*.log
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# IDE-specific files
+*.iml
+.project
+.settings/
+
+# Mac-specific files
+.DS_Store
+
+# Windows thumbnail cache files
+Thumbs.db
+
+# npm package lock file
+package-lock.json
