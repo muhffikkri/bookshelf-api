@@ -74,42 +74,36 @@ const addBookHandler = (request, h) => {
 
 // Kriteria 4 : API dapat menampilkan seluruh buku
 const getAllBooksHandler = (request, h) => {
-  // Hanya mengambil id, name, dan publisher
-  const allBooks = books.map((book) => ({
+  // Mendapatkan nilai query parameters dari request URL
+  const {name, reading, finished} = request.query;
+
+  // Filter buku berdasarkan query parameters
+  let filteredBooks = books;
+
+  if (name) {
+    const keyword = name.toLowerCase();
+    filteredBooks = filteredBooks
+        .filter((book) =>
+          book.name.toLowerCase().includes(keyword));
+  }
+
+  if (reading !== undefined) {
+    const isReading = reading === '1';
+    filteredBooks = filteredBooks.filter((book) => book.reading === isReading);
+  }
+
+  if (finished !== undefined) {
+    const isFinished = finished === '1';
+    filteredBooks = filteredBooks
+        .filter((book) =>
+          book.finished === isFinished);
+  }
+
+  const allBooks = filteredBooks.map((book) => ({
     id: book.id,
     name: book.name,
     publisher: book.publisher,
   }));
-
-  const {
-    name,
-    reading,
-    finished,
-  } = request.params;
-
-  if (name) {
-    const filteredBooksWithNames = books.
-        filter((book) =>
-          book.name.lowercase() === name.lowercase());
-    return h
-        .response({
-          status: 'success',
-          data: {
-            books: filteredBooksWithNames,
-          },
-        })
-        .code(200);
-  };
-
-  if (reading) {
-    const isBeingRead = books
-        .filter((book) =>
-          book.reading == true);
-  }
-
-  if (finished) {
-
-  }
 
   return h
       .response({
