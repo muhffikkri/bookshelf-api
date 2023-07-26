@@ -1,4 +1,0 @@
-port (number) : jalur yang digunakan untuk mengakses HTTP server.
-hostname (string) : nama domain yang digunakan oleh HTTP server.
-backlog (number) : maksimal koneksi yang dapat ditunda (pending) pada HTTP server.
-listeningListener (function) : callback yang akan terpanggil ketika HTTP server sedang bekerja (listening).
